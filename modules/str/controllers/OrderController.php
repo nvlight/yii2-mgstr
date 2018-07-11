@@ -82,7 +82,11 @@ class OrderController extends Controller
             //echo Debug::d($job->toArray(),'$job'); die;
             //echo Debug::d($model->toArray(),'model'); die;
 
-            $model->price1 = $job->price1;
+            // тут дадим возможность пользователю менять цену работы
+            if (!$model->price1){
+                $model->price1 = $job->price1;
+            }
+
             $model->price2 = $job->price2;
             $model->price3 = $model->price2 - $model->price1;
             $model->summ1 = $model->price1 * $model->volume;
@@ -142,9 +146,11 @@ class OrderController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $item = $this->findModel($id);
+        $id_room = $item->id_room;
+        $item->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/str/room/view?id='.$id_room]);
     }
 
     /**

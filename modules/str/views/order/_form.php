@@ -30,7 +30,7 @@ use app\modules\str\models\Jobtypes;
 
     <?= $form->field($model, 'volume')->textInput() ?>
 
-    <?php // $form->field($model, 'price1')->textInput() ?>
+    <?php echo $form->field($model, 'price1')->textInput()->label('Цена - установка вручную') ?>
 
     <?php // $form->field($model, 'price2')->textInput() ?>
 

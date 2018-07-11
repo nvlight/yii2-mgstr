@@ -111,9 +111,11 @@ class RoomController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $item = $this->findModel($id);
+        $id_project = $item->id_parent;
+        $item->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/str/project/view?id='.$id_project]);
     }
 
     /**

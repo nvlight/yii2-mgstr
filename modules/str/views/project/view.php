@@ -96,7 +96,12 @@ $this->params['breadcrumbs'][] = $this->title;
 //                'label' => 'parent',
 //                'attribute' => 'id_parent',
 //            ],
-            'name',
+            [
+                'attribute' => 'name',
+                'content' => function ($data) {
+                    return Html::a($data->name,'/str/room/view?id='.$data->id);
+                },
+            ],
             'height',
             'perimeter',
             'wall_count',
@@ -118,18 +123,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 'buttons' => [
                 'view' => function ($url, $model) {
                     return Html::a('<span class="glyphicon glyphicon-eye-open"></span> ', $url, [
-                                'title' => Yii::t('app', 'view'),
+                        'title' => Yii::t('app', 'view'),
                     ]);
                 },
 
                 'update' => function ($url, $model) {
                     return Html::a('<span class="glyphicon glyphicon-pencil"></span> ', $url, [
-                                'title' => Yii::t('app', 'update'),
+                        'title' => Yii::t('app', 'update'),
                     ]);
                 },
                 'delete' => function ($url, $model) {
                     return Html::a('<span class="glyphicon glyphicon-trash"></span> ', $url, [
-                                'title' => Yii::t('app', 'delete'),
+                        'title' => Yii::t('app', 'delete'), 'data' => [
+                            'confirm' => 'Are you sure you want to delete this item?',
+                            'method' => 'post',
+                        ],
                     ]);
                 }
 

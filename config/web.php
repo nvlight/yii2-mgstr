@@ -7,10 +7,20 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'Ru-ru',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+//    'controllerMap' => [
+//        'migrate' => [
+//            'class' => 'yii\console\controllers\MigrateController',
+//            'migrationPath' => null,
+//            'migrationNamespaces' => [
+//                'snewer\images\migrations',
+//            ],
+//        ],
+//    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -51,14 +61,37 @@ $config = [
             ],
         ],
         //*/
+        'storage' => [
+            'class' => 'snewer\storage\StorageManager',
+            'buckets' => [
+                'images' => [
+                    'class' => 'snewer\storage\drivers\FileSystemDriver',
+                    'basePath' => '@webroot/uploads/images/',
+                    'baseUrl' => '@web/uploads/images/'
+                ],
+            ]
+        ],
     ],
     'modules' => [
         'str' => [
             'class' => 'app\modules\str\module',
             'layout' => 'main'
         ],
-
+        'images' => [
+            'class' => 'snewer\images\Module',
+            'imagesStoreBucketName' => 'images',
+            'controllerAccess' => [
+                'class' => 'yii\filters\AccessControl',
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['?', '@']
+                    ]
+                ]
+            ]
+        ]
     ],
+    'defaultRoute' => 'str/project',
     'params' => $params,
 ];
 

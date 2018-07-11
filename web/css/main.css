@@ -1,0 +1,56 @@
+.footer .text{
+    padding: 5px;
+    width: 100%;
+    display: block;
+    background-color: #fff;
+    position: fixed;
+    bottom: 0px;
+    font-weight: bold;
+    color: #000;
+}
+
+.logo-top{
+    padding-top: 26px;
+    border-radius: 50%;
+}
+
+.project-index .owl-carousel .owl-nav{
+    position: absolute;
+    top: 43%;
+    width: 100%;
+    opacity: .7;
+}
+.project-index .owl-carousel .owl-nav button:hover{
+    opacity: .9;
+}
+.project-index .owl-carousel .owl-nav > button{
+    font-size: 25px;
+    width: 50px;
+    height: 50px;
+    display: block;
+    line-height: 50px;
+    border: 1px solid #ccc;
+    position: absolute;
+    background-color: #fff;
+
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+.project-index .owl-carousel .owl-nav >.owl-prev{
+    left: 5px;
+}
+.project-index .owl-carousel .owl-nav >.owl-next{
+    right: 5px;
+}
+
+.project-index .owl-carousel .owl-nav >.owl-prev:before{
+    //content: '\f100'
+}
+.project-index .owl-carousel .owl-nav >.owl-next:before{
+    //content: '\f101'
+}
+
+.img-center {
+    display: block;
+    margin: 0 auto;
+}

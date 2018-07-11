@@ -9,6 +9,8 @@ use app\components\Debug;
 use yii\data\ActiveDataProvider;
 use app\modules\str\models\Room;
 use yii\helpers\Url;
+use app\modules\str\models\Materialorder;
+use app\modules\str\models\MaterialorderSearch;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\str\models\Room */
@@ -85,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
     ?>
 
     <p>
-        <?= Html::a('Добавить тип работы', ['/str/order/create?id='.$model->id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить работу', ['/str/order/create?id='.$model->id], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php
@@ -132,9 +134,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
+                'label' => 'Работа',
                 'attribute' => 'id_job',
-                'value' => function ($data) {
-                    return $data->job->name;
+//                'value' => function ($data) {
+//                    return $data->job->name;
+//                },
+                'content' => function ($data) {
+                    return Html::a($data->job->name,'/str/order/view?id='.$data->id);
                 },
             ],
             'volume',
@@ -188,6 +194,115 @@ $this->params['breadcrumbs'][] = $this->title;
 
         ]
     ]);
+    ?>
+
+
+    <p>
+        <?= Html::a('Добавить материал', ['/str/materialorder/create?id='.$model->id], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?php
+        //
+        $searchModel = new MaterialorderSearch();
+        //echo $model->id;
+        $query = Materialorder::find()->where(['id_room' => $model->id])->with('material');
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC
+                ]
+            ]
+        ]);
+        //echo Debug::d($query->one(),'q one');
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        //
+        echo GridView::widget([
+            'dataProvider' => $dataProvider,
+            //'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+
+                //'id',
+                //'id_project',
+                //'id_room',
+                [
+                    'attribute' => 'id_material',
+                    'format' => 'raw',
+                    'value' => function ($data){
+                        return Html::a($data->material->name,['/str/materialorder/view?id='.$data->id]);
+                    }
+                ],
+                [
+                    'attribute' => 'note',
+                    'label' => 'Изображениe',
+                    'format' => 'raw',
+                    'value' => function ($data){
+                        return Html::a(
+                            Html::img('@web/'.Yii::$app->params['img_converted'] . $data->material->image_id,
+                                ['width' => '70px', 'height' => '60px', 'class' => 'img-center', ]
+                            )
+                            ,['/str/material/view?id='.$data->id_material, ]
+                            ,['target' => '_blank']
+                        );
+
+                    }
+                ],
+                'count',
+                'price',
+                'summ',
+                //'note',
+
+                //['class' => 'yii\grid\ActionColumn'],
+
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'template' => '{view}{update}{delete}',
+                    'buttons' => [
+                        'view' => function ($url, $model) {
+                            return Html::a('<span class="glyphicon glyphicon-eye-open"></span> ', $url, [
+                                'title' => Yii::t('app', 'view'),
+                            ]);
+                        },
+
+                        'update' => function ($url, $model) {
+                            return Html::a('<span class="glyphicon glyphicon-pencil"></span> ', $url, [
+                                'title' => Yii::t('app', 'update'),
+                            ]);
+                        },
+                        'delete' => function ($url, $model) {
+                            return Html::a('<span class="glyphicon glyphicon-trash"></span> ', $url, [
+                                'title' => Yii::t('app', 'delete'), 'data' => [
+                                    'confirm' => 'Are you sure you want to delete this item?',
+                                    'method' => 'post',
+                                ],
+                            ]);
+                        }
+
+                    ],
+
+                    'urlCreator' => function ($action, $model, $key, $index) {
+                        if ($action === 'view') {
+                            $url ='/str/materialorder/view?id='.$model->id;
+                            return $url;
+                        }
+
+                        if ($action === 'update') {
+                            $url ='/str/materialorder/update?id='.$model->id;
+                            return $url;
+                        }
+                        if ($action === 'delete') {
+                            $url ='/str/materialorder/delete?id='.$model->id;
+                            return $url;
+                        }
+                    }
+                ],
+
+            ],
+        ]);
     ?>
 
 </div>

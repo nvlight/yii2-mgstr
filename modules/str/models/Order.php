@@ -45,8 +45,8 @@ class Order extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_room' => 'Комнаты',
-            'id_project' => 'Проекта',
+            'id_room' => 'Комната',
+            'id_project' => 'Проект',
             'id_job' => '№ работы',
             'volume' => 'Объем',
             'price1' => 'Цена (номинал)',

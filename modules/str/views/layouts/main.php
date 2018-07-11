@@ -28,10 +28,20 @@ AppAsset::register($this);
 
 <div class="header">
     <div class="container">
-        <h2 class="text-center">MG-Строй-Сервис</h2>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2 class="text-center" style="padding-top: 21px;">MG-Строй-Сервис</h2>
+                <h3 class="text-center" style="">Дом под ключ</h3>
+                <h4 class="text-center" style="">Быстро, качественно и дешево!</h4>
+            </div>
+            <div class="col-md-3">
+                <?=Html::img('@web/img/logo-01.jpg',['class' => 'logo-top img-responsive'])?>
+            </div>
+        </div>
         <p class="pull-left">
             <?=Html::a('На главную',['/str/project'])?>
         </p>
+
     </div>
 
 </div>
@@ -43,9 +53,7 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left">
-            <span class="text" style="">
-                &copy; Martin German <?= date('Y') ?>
-            </span>
+            <span class="text" style="">&copy; Martin German <?= date('Y') ?></span>
         </p>
     </div>
 </footer>

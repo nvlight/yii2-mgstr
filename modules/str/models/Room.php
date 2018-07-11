@@ -51,7 +51,7 @@ class Room extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_parent' => 'Id Parent',
+            'id_parent' => 'Проект',
             'name' => 'Имя',
             'height' => 'Высота',
             'perimeter' => 'Периметр',
