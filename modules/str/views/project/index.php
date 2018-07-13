@@ -142,6 +142,14 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Создать проект', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <?php if (Yii::$app->session->hasFlash('project_delete') && Yii::$app->session->getFlash('project_delete')['success'] === 'yes' ): ?>
+        <p>
+            <span class="h4 alert-success" style="padding: 10px; display: block; margin: 5px 0;">
+                <strong><?= Html::encode(Yii::$app->session->get('project_delete')['message']) ?></strong>
+            </span>
+        </p>
+    <?php endif; ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

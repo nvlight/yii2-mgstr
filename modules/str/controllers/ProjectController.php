@@ -2,6 +2,8 @@
 
 namespace app\modules\str\controllers;
 
+use app\components\Debug;
+use app\modules\str\models\Room;
 use Yii;
 use app\modules\str\models\Project;
 use app\modules\str\models\ProjectSearch;
@@ -104,9 +106,24 @@ class ProjectController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        //$this->findModel($id)->delete();
+        $project = $this->findModel($id);
+        $project_childs = Room::find()->where(['id_parent' => $project->id])->count();
+        //echo Debug::d($project_childs,'project_childs');
+        //die;
+        if ($project_childs){
+            Yii::$app->session->setFlash('project_delete',
+                ['success' => 'no', 'message' => 'Нельзя удалить проект, если за ним закреплены комнаты']
+            );
+            return $this->redirect(['/str/project/view?id='.$project->id]);
+        }
+        //die;
+        $project->delete();
+        Yii::$app->session->setFlash('project_delete',
+            ['success' => 'yes', 'message' => 'Проект удален']
+        );
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/str/project/index']);
     }
 
     /**

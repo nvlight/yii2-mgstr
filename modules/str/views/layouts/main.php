@@ -22,9 +22,65 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+
+    <style>
+        /* ====  Preloader styles ==== */
+        #hola{
+            width: 100vw;
+            height: 100vh;
+            background-color: #fff;
+            position: fixed;
+            z-index: 999;
+        }
+        #preloader {
+            position:relative;
+            width: 80px;
+            height: 80px;
+            top: 45%;
+            margin: 0 auto;
+        }
+        #preloader span{
+            border:8px solid #416C5F;
+            position:absolute;
+            border-top:33px solid transparent;
+            border-radius:999px;
+        }
+        #preloader span:nth-child(1){
+            width:80px;
+            height:80px;
+            animation: spin-1 2s infinite linear;
+        }
+        #preloader span:nth-child(2){
+            top: 20px;
+            left: 20px;
+            width:40px;
+            height:40px;
+            animation: spin-2 1s infinite linear;
+        }
+        @keyframes spin-1 {
+            0% {transform: rotate(360deg); opacity: 1;}
+            50% {transform: rotate(180deg); opacity: 0.5;}
+            100% {transform: rotate(0deg); opacity: 1;}
+        }
+        @keyframes spin-2 {
+            0% {transform: rotate(0deg); opacity: 0.5;}
+            50% {transform: rotate(180deg); opacity: 1;}
+            100% {transform: rotate(360deg); opacity: 0.5;}
+        }
+    </style>
+
 </head>
 <body>
 <?php $this->beginBody() ?>
+
+
+
+<div id="hola">
+    <div id="preloader">
+        <span></span>
+        <span></span>
+    </div>
+</div>
 
 <div class="header">
     <div class="container">
@@ -50,13 +106,26 @@ AppAsset::register($this);
     <?= $content ?>
 </div>
 
+<div style="min-height: 43px;"></div>
+
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">
-            <span class="text" style="">&copy; Martin German <?= date('Y') ?></span>
-        </p>
+        <div class="">
+            <p class="">
+                <span class="text" style="">&copy; Martin German <?= date('Y') ?></span>
+            </p>
+        </div>
     </div>
 </footer>
+
+<?php
+    $js1 = <<<JS
+$("#hola").delay(150).fadeOut("slow"),$("body").delay(0).css({overflow:"visible"})
+JS;
+
+$this->registerJs($js1);
+
+?>
 
 <?php $this->endBody() ?>
 </body>

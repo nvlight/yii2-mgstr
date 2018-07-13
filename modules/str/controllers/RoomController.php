@@ -9,6 +9,8 @@ use app\modules\str\models\RoomSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\modules\str\models\Order;
+use app\modules\str\models\Materialorder;
 
 /**
  * RoomController implements the CRUD actions for Room model.
@@ -113,7 +115,26 @@ class RoomController extends Controller
     {
         $item = $this->findModel($id);
         $id_project = $item->id_parent;
+        // нужно узнать есть ли записи из таблиц РаботаЗаказ и МатериалЗаказ соотв. этой комнате
+        // если есть, то комнату нельзя удалить
+        $job_order = Order::find()->where(['id_room' => $item->id])->count();
+        $material_order = Materialorder::find()->where(['id_room' => $item->id])->count();
+        //echo Debug::d($job_order,'j_order');
+        //echo Debug::d($material_order,'m_order');
+
+        if ($job_order || $material_order){
+            Yii::$app->session->setFlash('room_delete',
+                ['success' => 'no', 'message' => 'Нельзя удалить комнату, если за ним закреплена работа и/или материалы']
+            );
+            return $this->redirect(['/str/room/view?id='.$item->id]);
+        }
+        //die;
         $item->delete();
+        Yii::$app->session->setFlash('room_delete',
+            ['success' => 'yes', 'message' => 'комната удалена']
+        );
+
+        //echo Debug::d(Yii::$app->session); die;
 
         return $this->redirect(['/str/project/view?id='.$id_project]);
     }

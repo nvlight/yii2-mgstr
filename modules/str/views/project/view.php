@@ -34,6 +34,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
+    <?php if (Yii::$app->session->hasFlash('project_delete') && Yii::$app->session->getFlash('project_delete')['success'] === 'no' ): ?>
+        <p>
+            <span class="h4 alert-warning" style="padding: 10px; margin: 5px 0; display: block;">
+                <strong><?= Html::encode(Yii::$app->session->get('project_delete')['message']) ?></strong>
+            </span>
+        </p>
+    <?php endif; ?>
+
     <?php
         echo DetailView::widget([
             'model' => $model,
@@ -52,7 +60,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 <p>Сумма всех объемов работ: <span><strong><?=$summ_project?></strong> &#x20bd</span></p>
             <?php
         }
+        //
+        $summ_project_material = \app\modules\str\models\Materialorder::find()->where(['id_project' => $model->id])->sum('summ');
+        if ($summ_project_material !== null){
+            ?>
+            <p>Сумма всех материалов: <span><strong><?=$summ_project_material?></strong> &#x20bd</span></p>
+            <?php
+        }
+
+        //echo Debug::d(Yii::$app->session);
     ?>
+
+    <?php if (Yii::$app->session->hasFlash('room_delete') && Yii::$app->session->getFlash('room_delete')['success'] === 'yes' ): ?>
+        <p>
+            <span class="h4 alert-success" style="padding: 10px; display: block; margin: 5px 0;">
+                <strong><?= Html::encode(Yii::$app->session->get('room_delete')['message']) ?></strong>
+            </span>
+        </p>
+    <?php endif; ?>
 
     <p>
         <?= Html::a('Добавить комнату', ['/str/room/create', 'id' => $model->id], ['class' => 'btn btn-success']) ?>

@@ -35,8 +35,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php endif; ?>
 
     <p>
-        <span class="h3">Комната: <strong><?= Html::encode($this->title) ?></strong></span>
+        <span class="h4">Комната: <strong><?= Html::encode($this->title) ?></strong></span>
     </p>
+
+    <?php if (Yii::$app->session->hasFlash('room_delete') && Yii::$app->session->getFlash('room_delete')['success'] === 'no' ): ?>
+        <p>
+            <span class="h4 alert-warning" style="padding: 10px; display: block; margin: 5px 0;">
+                <strong><?= Html::encode(Yii::$app->session->get('room_delete')['message']) ?></strong>
+            </span>
+        </p>
+    <?php endif; ?>
 
     <p>
         <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -85,6 +93,25 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]);
     ?>
+
+    <?php
+    //
+    $summ_room = Order::find()->where(['id_room' => $model->id])->sum('summ1');
+    if ($summ_room !== null){
+    ?>
+    <p>Сумма объемов работ: <span><strong><?=$summ_room?></strong> &#x20bd</span></p>
+    <?php
+        }
+        //
+        $summ_room_material = \app\modules\str\models\Materialorder::find()->where(['id_room' => $model->id])->sum('summ');
+        if ($summ_room_material !== null){
+            ?>
+    <p>Сумма материалов: <span><strong><?=$summ_room_material?></strong> &#x20bd</span></p>
+    <?php
+        }
+
+    ?>
+
 
     <p>
         <?= Html::a('Добавить работу', ['/str/order/create?id='.$model->id], ['class' => 'btn btn-success']) ?>
@@ -196,6 +223,9 @@ $this->params['breadcrumbs'][] = $this->title;
     ]);
     ?>
 
+    <p>
+        <?= Html::a('Добавить новый вид материала', ['/str/material']) ?>
+    </p>
 
     <p>
         <?= Html::a('Добавить материал', ['/str/materialorder/create?id='.$model->id], ['class' => 'btn btn-success']) ?>
