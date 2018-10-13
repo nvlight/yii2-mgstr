@@ -61,6 +61,20 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = '_main';
+
+        echo Yii::getAlias('@app'); echo "<br>"; //die;
+        echo Yii::getAlias('@webroot'); echo "<br>"; //die;
+//        Yii::setAlias('@webroot', dirname(__FILE__));
+//        $curr_web = Yii::getAlias('@webroot');
+//        $curr_web_dir = '../' . $curr_web;
+//        echo $curr_web_dir; echo "<br>";
+//        echo Yii::getAlias('@webroot'); echo "<br>";
+//        Yii::setAlias('@webroot', 'http://mysite.com');
+//        echo Yii::getAlias('@webroot'); echo "<br>";
+//        die;
+
+
         return $this->render('index');
     }
 
