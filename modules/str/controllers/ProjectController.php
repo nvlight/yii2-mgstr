@@ -54,6 +54,9 @@ class ProjectController extends Controller
      */
     public function actionView($id)
     {
+        $id = intval($id);
+        Yii::$app->session['id_project'] = $id;
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -86,6 +89,9 @@ class ProjectController extends Controller
      */
     public function actionUpdate($id)
     {
+        $id = intval($id);
+        Yii::$app->session['id_project'] = $id;
+
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
