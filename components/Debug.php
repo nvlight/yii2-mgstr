@@ -60,7 +60,7 @@ STR1;
         $pre = "\n<pre>$pre</pre>\n\n";
         $str .= $str1 . $pre . "</div>\n";
 
-
+        Html::encode();
 
 
 

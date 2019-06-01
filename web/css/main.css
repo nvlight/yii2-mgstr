@@ -59,22 +59,3 @@
     display: block;
     margin: 0 auto;
 }
-
-/*html {background-color: #DAE2E4;}*/
-body {background-color: #DAE2E4;}
-
-
-.table-striped > tbody > tr:nth-of-type(2n) {
-    background-color: #6e606033;
-}
-
-.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
-    border: 1px solid #2620204d;
-}
-.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td {
-    border-top: 1px solid #2620204d;
-}
-
-div.header{
-    background-color: #ECF0F1;
-}

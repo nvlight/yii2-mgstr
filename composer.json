@@ -21,7 +21,9 @@
         "kv4nt/yii2-owl-carousel2": "*",
         "rmrevin/yii2-fontawesome": "~3.0",
         "2amigos/yii2-ckeditor-widget": "~2.1",
-        "snewer/yii2-images": "^1.0.0@dev"
+        "snewer/yii2-images": "^1.0.0@dev",
+        "delocker/yii2-animate.css": "dev-master",
+        "kartik-v/yii2-widget-select2": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

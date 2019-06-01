@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f95972f5d6d017d218a0fd781067c191",
+    "content-hash": "b59a89e6709bb8360e21dd0dc2956f75",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -131,12 +131,12 @@
             "version": "2.3.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/OwlCarousel2/OwlCarousel2.git",
+                "url": "git@github.com:OwlFonk/OwlCarousel2.git",
                 "reference": "af851f9b567630d115930abd5480ffebccc72372"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OwlCarousel2/OwlCarousel2/zipball/af851f9b567630d115930abd5480ffebccc72372",
+                "url": "https://api.github.com/repos/OwlFonk/OwlCarousel2/zipball/af851f9b567630d115930abd5480ffebccc72372",
                 "reference": "af851f9b567630d115930abd5480ffebccc72372",
                 "shasum": null
             },
@@ -283,6 +283,52 @@
                 "wysiwyg"
             ],
             "time": "2017-09-13T13:09:47+00:00"
+        },
+        {
+            "name": "delocker/yii2-animate.css",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/delocker/yii2-animate.css.git",
+                "reference": "72317476b31be907ef2a02aaebaaa7d5d258e853"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/delocker/yii2-animate.css/zipball/72317476b31be907ef2a02aaebaaa7d5d258e853",
+                "reference": "72317476b31be907ef2a02aaebaaa7d5d258e853",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "2.0.*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "delocker\\animate\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Egor Pinkevich",
+                    "email": "egor.pinkevich@gmail.com",
+                    "homepage": "http://v2.by/"
+                }
+            ],
+            "description": "AssetBundle for http://daneden.github.io/animate.css/",
+            "keywords": [
+                "animate",
+                "asset",
+                "bundle",
+                "css",
+                "delocker",
+                "yii2"
+            ],
+            "time": "2015-10-05T23:33:01+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -465,6 +511,111 @@
                 "watermark"
             ],
             "time": "2018-05-29T14:19:03+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-krajee-base",
+            "version": "v2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-krajee-base.git",
+                "reference": "ec7fc2c5ed76ee29c939ed6fe33bab76eb25499c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-krajee-base/zipball/ec7fc2c5ed76ee29c939ed6fe33bab76eb25499c",
+                "reference": "ec7fc2c5ed76ee29c939ed6fe33bab76eb25499c",
+                "shasum": ""
+            },
+            "suggest": {
+                "yiisoft/yii2-bootstrap": "for Krajee extensions to work with Bootstrap 3.x version",
+                "yiisoft/yii2-bootstrap4": "for Krajee extensions to work with Bootstrap 4.x version"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\base\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Base library and foundation components for all Yii2 Krajee extensions.",
+            "homepage": "https://github.com/kartik-v/yii2-krajee-base",
+            "keywords": [
+                "base",
+                "extension",
+                "foundation",
+                "krajee",
+                "widget",
+                "yii2"
+            ],
+            "time": "2018-12-04T03:40:27+00:00"
+        },
+        {
+            "name": "kartik-v/yii2-widget-select2",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widget-select2.git",
+                "reference": "dd09e46e618cf1c67a39fac9f38d97a95184fe8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/dd09e46e618cf1c67a39fac9f38d97a95184fe8a",
+                "reference": "dd09e46e618cf1c67a39fac9f38d97a95184fe8a",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": ">=1.9"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\select2\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Enhanced Yii2 wrapper for the Select2 jQuery plugin (sub repo split from yii2-widgets).",
+            "homepage": "https://github.com/kartik-v/yii2-widget-select2",
+            "keywords": [
+                "dropdown",
+                "extension",
+                "form",
+                "jquery",
+                "plugin",
+                "select2",
+                "widget",
+                "yii2"
+            ],
+            "time": "2018-12-11T10:34:32+00:00"
         },
         {
             "name": "kv4nt/yii2-owl-carousel2",
@@ -3555,7 +3706,9 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "snewer/yii2-images": 20
+        "snewer/yii2-images": 20,
+        "delocker/yii2-animate.css": 20,
+        "kartik-v/yii2-widget-select2": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

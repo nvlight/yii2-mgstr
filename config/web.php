@@ -38,10 +38,15 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' =>     $params['sw_host'],
+                'username' => $params['sw_frommail'],
+                'password' => $params['sw_pass'],
+                'port' =>     $params['sw_port'],
+                'encryption' => $params['sw_enc'],
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -91,7 +96,7 @@ $config = [
             ]
         ]
     ],
-    'defaultRoute' => 'str/project',
+    'defaultRoute' => 'auth/index',
     'params' => $params,
 ];
 

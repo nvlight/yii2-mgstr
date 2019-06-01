@@ -26,7 +26,7 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<h3>Privet - new main layout</h3>
+<h3>Privet - beta111 - new main layout</h3>
 
 <div class="container">
     <?= $content ?>
